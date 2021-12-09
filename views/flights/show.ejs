@@ -8,6 +8,39 @@
 <%= flight.airport %>
 <br>
 <%= flight.departs %>
+<br><br>
+
+<form action="/flights/<%= flight._id %>/destinations" method="POST" autocomplete="off">
+    <h2>Enter Arrival:</h2>
+    <br>
+    <label>Airport ["AUS", "DFW", "DEN", "LAX", "SAN"]:
+      <input type="text" name="airport">
+    </label><br>
+    <br>
+    <label>Arrival Date:
+      <input type="text" name="arrival">
+    </label><br>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+<br><br>
+
+<h5>Arrival Options: </h5>
+<hr>
+<% if (flight.destinations.length) { %>
+    <% flight.destinations.forEach(d => { %>
+        <%= d.airport %>
+        <br>
+        <%= d.arrival %>
+        <br><hr>
+    <% }) %>
+
+    
+<% } else { %>
+    <h5>Yet to select Arrival destination</h5>
+<% } %>
+ 
 
 
 <%- include('../partials/footer') %>
