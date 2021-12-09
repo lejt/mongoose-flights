@@ -11,5 +11,8 @@ router.get('/new', flightsCtrl.new);
 // POST "/" page redirect after data submit
 router.post('/', flightsCtrl.create);
 
+// GET "/show" page for flight details
+router.get('/:id', flightsCtrl.show);
+
 
 module.exports = router;

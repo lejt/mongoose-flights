@@ -4,6 +4,7 @@ module.exports = {
     index,
     new: newOne,
     create,
+    show,
 };
 
 function index(req, res) {
@@ -13,6 +14,13 @@ function index(req, res) {
             return res.redirect('/index');
         }
         res.render('flights/index', {flights})
+    })
+};
+
+function show(req, res) {
+    // find the flight with :id
+    Flight.findById(req.params.id, function(err, flight) {
+        res.render('flights/show', {flight});
     })
 };
 

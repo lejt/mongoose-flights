@@ -18,6 +18,12 @@
                 <td><%= f.airport %></td>
                 <td><%= f.flightNo %></td>
                 <td><%= f.departs %></td>
+
+                <td>
+                    <form action="/flights/<%= f._id %>" method="GET">
+                        <button type="submit" class="btn btn-secondary">more details</button>
+                    </form>
+                </td>
             </tr>
         <% }); %>
     </tbody>
