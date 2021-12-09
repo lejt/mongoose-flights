@@ -24,6 +24,7 @@ function create(req, res) {
     //req.body. different parts 
     req.body.airline = req.body.airline[0].toUpperCase() + req.body.airline.slice(1).toLowerCase();
     req.body.airport = req.body.airport.toUpperCase();
+    if (req.body.departs === '') delete req.body.departs; 
     //req.bodyflightNo
 
     // create in-memory Flight obj
@@ -32,6 +33,7 @@ function create(req, res) {
         if (err) {
             console.log(err);
             return res.redirect('/flights/new');
+            // redirect to same page with additional error notes using <%= input must be ...%>
         }
         console.log(flight);
         res.redirect('/flights');
