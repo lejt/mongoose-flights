@@ -22,10 +22,9 @@ function newOne(req, res) {
 
 function create(req, res) {
     //req.body. different parts 
-    //req.airline
-    //req.airport
-    //req.flightNo
-    //req.departDate
+    req.body.airline = req.body.airline[0].toUpperCase() + req.body.airline.slice(1).toLowerCase();
+    req.body.airport = req.body.airport.toUpperCase();
+    //req.bodyflightNo
 
     // create in-memory Flight obj
     const flight = new Flight(req.body);
