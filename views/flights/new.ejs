@@ -1,5 +1,22 @@
 <%- include('../partials/header') %>
 
-    <h1>ADD FLIGHTS HERE</h1>
+
+<h1>ADD FLIGHTS HERE</h1>
+
+<form action="/flights" method="POST" autocomplete="off">
+    <label>Airline:
+      <input type="text" name="airline">
+    </label><br>
+    <label>Airport:
+      <input type="text" name="airport">
+    </label><br>
+    <label>Flight No.:
+        <input type="text" name="flightNo">
+    </label><br>
+    <label>Departure date (YYYY-MM-DD):
+        <input type="text" name="departs">
+    </label><br>
+    <input type="submit" value="Add Flight">
+</form>
 
 <%- include('../partials/footer') %>

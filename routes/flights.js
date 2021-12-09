@@ -2,9 +2,14 @@ var express = require('express');
 var router = express.Router();
 const flightsCtrl = require('../controllers/flights');
 
-// GET / home page
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// GET "/" page for all flights 
+router.get('/', flightsCtrl.index);
+
+// GET "/new" page for adding flights
+router.get('/new', flightsCtrl.new);
+
+// POST "/" page redirect after data submit
+router.post('/', flightsCtrl.create);
+
 
 module.exports = router;
