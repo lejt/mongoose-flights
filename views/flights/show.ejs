@@ -27,14 +27,27 @@
 <br><br>
 
 <h5>Arrival Options: </h5>
-<hr>
 <% if (flight.destinations.length) { %>
-    <% flight.destinations.forEach(d => { %>
-        <%= d.airport %>
-        <br>
-        <%= d.arrival %>
-        <br><hr>
-    <% }) %>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Arrival At:</th>
+                <form action="/flights/<%= flight._id %>/destinations/ascending" method="GET">
+                    <th>Arrival Date: <button>v</button> </th>
+                </form>
+            </tr>
+        </thead>
+        <tbody>
+            <% flight.destinations.forEach(d => { %>
+                <tr>
+                    <td><%= d.airport %></td>
+                    <td><%= d.arrival %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
 
     
 <% } else { %>

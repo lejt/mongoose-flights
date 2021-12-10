@@ -2,6 +2,7 @@ const Flight = require("../models/flight");
 
 module.exports = {
     create,
+    ascend,
 };
 
 function create(req, res) {
@@ -24,3 +25,10 @@ function create(req, res) {
         });
     });
 }
+
+function ascend(req,res) {
+    Flight.findById(req.params.id, (err, flight) => {
+        const results = flight.destinations.sort((a,b)=> a.arrival-b.arrival)
+        res.render("flights/show", {flight})
+    })
+};

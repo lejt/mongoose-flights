@@ -4,18 +4,26 @@
 <h1>ADD FLIGHTS HERE</h1>
 
 <form action="/flights" method="POST" autocomplete="off">
-    <label>Airline ["American", "Southwest", "United"]:
-      <input type="text" name="airline">
-    </label><br>
-    <label>Airport ["AUS", "DFW", "DEN", "LAX", "SAN"]:
-      <input type="text" name="airport">
-    </label><br>
+    <label>Airline</label>
+    <select name="airline">
+      <option value="American">American</option>
+      <option value="Southwest">Southwest</option>
+      <option value="United">United</option>
+    </select><br><br>
+    <label>Airport</label>
+    <select name="airport">
+      <option value="AUS">AUS</option>
+      <option value="DFW">DFW</option>
+      <option value="DEN">DEN</option>
+      <option value="LAX">LAX</option>
+      <option value="SAN">SAN</option>
+    </select><br><br>
     <label>Flight No.:
         <input type="text" name="flightNo">
-    </label><br>
-    <label>Departure date (YYYY-MM-DD):
-        <input type="text" name="departs">
-    </label><br>
+    </label><br><br>
+    <label>Departure date:
+        <input type="date" name="departs">
+    </label><br><br>
     <input type="submit" value="Add Flight">
 </form>
 

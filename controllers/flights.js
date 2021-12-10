@@ -30,10 +30,16 @@ function newOne(req, res) {
 
 function create(req, res) {
     //req.body. different parts 
-    req.body.airline = req.body.airline[0].toUpperCase() + req.body.airline.slice(1).toLowerCase();
-    req.body.airport = req.body.airport.toUpperCase();
-    if (req.body.departs === '') delete req.body.departs; 
+    // req.body.airline = req.body.airline[0].toUpperCase() + req.body.airline.slice(1).toLowerCase();
+    // req.body.airport = req.body.airport.toUpperCase();
+    // if (req.body.departs === '') delete req.body.departs; 
     //req.bodyflightNo
+    if (req.body.departs === '') {
+        delete req.body.departs; 
+    } else {
+        const s = req.body.departs;
+        req.body.departs = `${s.substr(5, 2)}-${s.substr(8, 2)}-${s.substr(0, 4)}`;
+    }
 
     // create in-memory Flight obj
     const flight = new Flight(req.body);

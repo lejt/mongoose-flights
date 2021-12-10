@@ -11,6 +11,7 @@ const destinationSchema = new Schema({
     arrival: {
         type: Date,
         min: () => new Date(),
+        // modify arrival time to be time of destination
     },
 }, {timestamps: true});
 
@@ -18,14 +19,10 @@ const flightSchema = new Schema({
     airline: {
         type: String,
         enum: ["American", "Southwest", "United"],
-        trim: true,
-        required: true,
     },
     airport: {
         type: String,
         enum: ["AUS", "DFW", "DEN", "LAX", "SAN"],
-        trim: true,
-        required: true,
     },
     flightNo: {
         type: Number,
@@ -38,7 +35,6 @@ const flightSchema = new Schema({
         type: Date,
         default: new Date(+new Date() + 365*24*60*60*1000),
         min: () => new Date(),
-        trim: true,
     },
     destinations: [destinationSchema],
 }, {timestamps: true});
