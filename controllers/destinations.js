@@ -12,6 +12,13 @@ function create(req, res) {
 
     Flight.findById(req.params.id, function(err, flight) {
 
+        if (req.body.arrival === '') {
+            delete req.body.arrival; 
+        } else {
+            const s = req.body.arrival;
+            req.body.arrival = `${s.substr(5, 2)}-${s.substr(8, 2)}-${s.substr(0, 4)}`;
+        };
+
         flight.destinations.push(req.body);
         // do i need to process the info before db insertion?
         
@@ -24,7 +31,7 @@ function create(req, res) {
             res.redirect(`/flights/${req.params.id}`);
         });
     });
-}
+};
 
 function ascend(req,res) {
     Flight.findById(req.params.id, (err, flight) => {

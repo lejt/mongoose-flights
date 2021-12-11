@@ -13,14 +13,17 @@
 <form action="/flights/<%= flight._id %>/destinations" method="POST" autocomplete="off">
     <h2>Enter Arrival:</h2>
     <br>
-    <label>Airport ["AUS", "DFW", "DEN", "LAX", "SAN"]:
-      <input type="text" name="airport">
-    </label><br>
-    <br>
-    <label>Arrival Date:
-      <input type="text" name="arrival">
-    </label><br>
-    <br>
+    <label>Airport:</label>
+    <select name="airport">
+        <option value="AUS">AUS</option>
+        <option value="DFW">DFW</option>
+        <option value="DEN">DEN</option>
+        <option value="LAX">LAX</option>
+        <option value="SAN">SAN</option>
+    </select><br><br>
+    <label>Arrival Date:</label>
+        <input type="date" name="arrival">
+    </label><br><br>
     <button type="submit">Submit</button>
 </form>
 
