@@ -1,81 +1,84 @@
 <%- include('../partials/header') %>
+<div class="textBg">
 
-<h1>Departure</h1>
-
-<%= flight.airline %>
-<%= flight.flightNo %>
-<br>
-<%= flight.airport %>
-<br>
-<%= flight.departs %>
-<br><br>
-
-<form action="/flights/<%= flight._id %>/destinations" method="POST" autocomplete="off">
-    <h2>Enter Arrival:</h2>
+    <h1>Departure</h1>
+    
+    <%= flight.airline %>
+    <%= flight.flightNo %>
     <br>
-    <label>Airport:</label>
-    <select name="airport">
-        <option value="AUS">AUS</option>
-        <option value="DFW">DFW</option>
-        <option value="DEN">DEN</option>
-        <option value="LAX">LAX</option>
-        <option value="SAN">SAN</option>
-    </select><br><br>
-    <label>Arrival Date:</label>
-        <input type="date" name="arrival">
-    </label><br><br>
-    <button type="submit">Submit</button>
-</form>
-
-<br><br>
-
-<h5>Arrival Options: </h5>
-<% if (flight.destinations.length) { %>
-
-    <table class="table table-hover">
+    <%= flight.airport %>
+    <br>
+    <%= flight.departs %>
+    <br><br>
+    
+    <form action="/flights/<%= flight._id %>/destinations" method="POST" autocomplete="off">
+        <h2>Enter Arrival:</h2>
+        <br>
+        <label>Airport:</label>
+        <select name="airport">
+            <option value="AUS">AUS</option>
+            <option value="DFW">DFW</option>
+            <option value="DEN">DEN</option>
+            <option value="LAX">LAX</option>
+            <option value="SAN">SAN</option>
+        </select><br><br>
+        <label>Arrival Date:</label>
+            <input type="date" name="arrival">
+        </label><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <br><br>
+    
+    <h5>Arrival Options: </h5>
+    <% if (flight.destinations.length) { %>
+    
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Arrival At:</th>
+                    <form action="/flights/<%= flight._id %>/destinations/ascending" method="GET">
+                        <th>Arrival Date: <button>v</button> </th>
+                    </form>
+                </tr>
+            </thead>
+            <tbody>
+                <% flight.destinations.forEach(d => { %>
+                    <tr>
+                        <td><%= d.airport %></td>
+                        <td><%= d.arrival %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    
+    <% } else { %>
+        <h5>Yet to select Arrival destination</h5>
+    <% } %>
+     
+    <form action="/flights/<%= flight._id %>/tickets/new" method="GET">  
+        <button type="submit">Purchase Tickets</button>
+    </form>
+    
+    <br><br>
+    <h5>Tickets</h5>
+    <table class="table table-hover"> 
         <thead>
             <tr>
-                <th>Arrival At:</th>
-                <form action="/flights/<%= flight._id %>/destinations/ascending" method="GET">
-                    <th>Arrival Date: <button>v</button> </th>
-                </form>
+                <th>Seat</th>
+                <th>Price</th>
             </tr>
         </thead>
         <tbody>
-            <% flight.destinations.forEach(d => { %>
-                <tr>
-                    <td><%= d.airport %></td>
-                    <td><%= d.arrival %></td>
-                </tr>
-            <% }) %>
+            <% tickets.forEach(function(t) { %>
+              <tr>
+                <td><%= t.seat %></td>
+                <td><%= t.price %></td>
+              </tr>
+            <% }); %>
         </tbody>
-    </table>
-
-<% } else { %>
-    <h5>Yet to select Arrival destination</h5>
-<% } %>
- 
-<form action="/flights/<%= flight._id %>/tickets/new" method="GET">  
-    <button type="submit">Purchase Tickets</button>
-</form>
-
-<br><br>
-<h5>Tickets</h5>
-<table class="table table-hover"> 
-    <thead>
-        <tr>
-            <th>Seat</th>
-            <th>Price</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% tickets.forEach(function(t) { %>
-          <tr>
-            <td><%= t.seat %></td>
-            <td><%= t.price %></td>
-          </tr>
-        <% }); %>
-    </tbody>
-</table>
+    </table>     
+                               
+</div>
 
 <%- include('../partials/footer') %>

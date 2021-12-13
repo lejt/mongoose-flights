@@ -1,8 +1,53 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* background: linear-gradient(45deg, rgb(6, 79, 216), rgb(9, 31, 90));
+  height: 100vh; */
 }
 
 a {
   color: #00B7FF;
+}
+
+.container-fluid {
+  position: relative;
+  /* border: 1px solid blue; */
+}
+#logo img {
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* border: 1px solid red; */
+}
+#logo span {
+  margin-left: 50px;
+  font-weight: 700;
+}
+.nav-link {
+  font-size: 20px;
+}
+.homeSplash {
+  position: relative;
+  z-index:-1;
+}
+.backgroundHome {
+  width: 100%;
+  margin-top: -25px;
+}
+.display-1 {
+  color: rgb(255, 255, 255);
+  background-color: rgba(11, 93, 107, 0.5);
+  border-radius: 5px;
+  padding: 20px;
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  right: 0%;
+  transform: translateY(-50%);
+}
+
+.textBg {
+  background: rgb(204, 204, 204);
+  padding: 20px 50px;
 }

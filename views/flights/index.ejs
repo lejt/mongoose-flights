@@ -1,33 +1,36 @@
 <%- include('../partials/header') %>
+<div class="textBg">
 
-<h1>ALL FLIGHTS HERE</h1>
-   
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Airline</th>
-            <th>Airport</th>
-            <th>Flight No.</th>
-            <th>Departure Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% flights.forEach(f => {  %>
+    <h2 class="display-2">Current Flights</h2>
+       
+    <table class="table table-hover">
+        <thead>
             <tr>
-                <td><%= f.airline %></td>
-                <td><%= f.airport %></td>
-                <td><%= f.flightNo %></td>
-                <td><%= f.departs %></td>
-
-                <td>
-                    <form action="/flights/<%= f._id %>" method="GET">
-                        <button type="submit" class="btn btn-secondary">more details</button>
-                    </form>
-                </td>
+                <th>Airline</th>
+                <th>Airport</th>
+                <th>Flight No.</th>
+                <th>Departure Date</th>
             </tr>
-        <% }); %>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <% flights.forEach(f => {  %>
+                <tr>
+                    <td><%= f.airline %></td>
+                    <td><%= f.airport %></td>
+                    <td><%= f.flightNo %></td>
+                    <td><%= f.departs %></td>
+    
+                    <td>
+                        <form action="/flights/<%= f._id %>" method="GET">
+                            <button type="submit" class="btn btn-secondary">details</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+</div>
 
 
 <%- include('../partials/footer') %>
