@@ -51,12 +51,24 @@
         </tbody>
     </table>
 
-
-    
 <% } else { %>
     <h5>Yet to select Arrival destination</h5>
 <% } %>
  
+<form action="/flights/<%= flight._id %>/tickets/new" method="GET">  
+    <button type="submit">Purchase Tickets</button>
+</form>
 
+
+
+<table>
+    <tbody>
+        <% tickets.forEach(function(t) { %>
+          <tr>
+            <td><%= t %></td>
+          </tr>
+          <% }); %>
+    </tbody>
+</table>
 
 <%- include('../partials/footer') %>
