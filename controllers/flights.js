@@ -28,7 +28,7 @@ function show(req, res) {
     // reading tickets document and finding flight info from flight: {}
     Flight.findById(req.params.id, function(err, flight) {
         Ticket.find({flight: flight._id}, function(err, tickets) {
-            console.log(tickets);
+            // console.log(tickets);
             // console.log(flight)
             res.render('flights/show', {flight, tickets});
         });
