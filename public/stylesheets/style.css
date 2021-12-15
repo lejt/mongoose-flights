@@ -60,6 +60,9 @@ a {
   box-shadow: 5px 10px rgba(0,0,0,0.5);
   overflow: auto;
 }
+.table th, td {
+  text-align: center;
+}
 
 /* Add Flights */
 .addFlight {
@@ -78,14 +81,18 @@ a {
   width: 900px;
   height: 700px;
   padding: 40px;
-  /* overflow: auto; */
 }
 
-.table th, td {
-  text-align: center;
+/* Purchase Tickets */
+.purchaseTix {
+  width: 550px;
+  padding: 30px;
 }
 
-/* Footer */
-.footerSize {
-  /* height: 100px; */
+/* Ticket */
+#ticketSeat select, input {
+  height: 30px;
+}
+#ticketPrice input {
+  height: 30px;
 }
