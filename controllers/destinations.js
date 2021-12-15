@@ -1,4 +1,5 @@
 const Flight = require("../models/flight");
+const Ticket = require("../models/ticket");
 
 module.exports = {
     create,
@@ -6,10 +7,7 @@ module.exports = {
 };
 
 function create(req, res) {
-    // find which departure info id it is from
-
-    // console.log(req.params.id);
-
+    // find which flight the destination(arrival) is designated to
     Flight.findById(req.params.id, function(err, flight) {
 
         if (req.body.arrival === '') {
@@ -20,8 +18,7 @@ function create(req, res) {
         };
 
         flight.destinations.push(req.body);
-        // do i need to process the info before db insertion?
-        
+
         // save then redirect
         flight.save(function(err) {
             if (err) console.log(err);
@@ -33,9 +30,12 @@ function create(req, res) {
     });
 };
 
+// sorting function used to list flight dates by ascending order
 function ascend(req,res) {
     Flight.findById(req.params.id, (err, flight) => {
-        const results = flight.destinations.sort((a,b)=> a.arrival-b.arrival)
-        res.render("flights/show", {flight})
+        flight.destinations.sort((a,b)=> a.arrival-b.arrival)
+        Ticket.find({flight: flight._id}, function(err, tickets) {
+            res.render('flights/show', {flight, tickets});
+        });
     })
 };

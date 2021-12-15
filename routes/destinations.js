@@ -7,6 +7,7 @@ const destinationsCtrl = require('../controllers/destinations');
 // POST "/flights/:id/destinations" page for selecting arrival info on show page
 router.post('/flights/:id/destinations', destinationsCtrl.create);
 
+// GET used to sort table by ascending date
 router.get('/flights/:id/destinations/ascending', destinationsCtrl.ascend);
 
 module.exports = router;

@@ -5,9 +5,6 @@ body {
   min-width: 100vw;
   position: relative;
 }
-a {
-  color: #062e3d;
-}
 
 /* Header */
 .container-fluid {
