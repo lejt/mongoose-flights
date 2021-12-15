@@ -14,6 +14,7 @@ function index(req, res) {
         if (err) {
             return res.redirect('/index');
         }
+        const results = flights.sort((a,b)=> a.departs-b.departs)
         res.render('flights/index', {flights})
     })
 };
@@ -27,13 +28,23 @@ function show(req, res) {
     // finds the flight and shows its details based on clicked object id
     // reading tickets document and finding flight info from flight: {}
     Flight.findById(req.params.id, function(err, flight) {
+        
         Ticket.find({flight: flight._id}, function(err, tickets) {
             // console.log(tickets);
-            // console.log(flight)
+            // console.log(flight);
             res.render('flights/show', {flight, tickets});
         });
     });
 };
+
+
+// function ascend(req,res) {
+//     Flight.findById(req.params.id, (err, flight) => {
+//         const results = flight.destinations.sort((a,b)=> a.arrival-b.arrival)
+//         res.render("flights/show", {flight})
+//     })
+// };
+
 
 function newOne(req, res) {
     res.render('flights/new');

@@ -1,84 +1,99 @@
 <%- include('../partials/header') %>
-<div class="textBg">
+<div class="textBg detailTable">
 
-    <h1>Departure</h1>
-    
-    <%= flight.airline %>
-    <%= flight.flightNo %>
-    <br>
-    <%= flight.airport %>
-    <br>
-    <%= flight.departs %>
-    <br><br>
+    <h2 class="display-2">Departure</h2>
+    <hr>
+    <div class="text-primary">
+        <%= flight.airline %>Airlines - Flight #: <%= flight.flightNo %><br>
+        Departure Airport: <%= flight.airport %><br>
+        <%= flight.departs %>
+    </div><br>
     
     <form action="/flights/<%= flight._id %>/destinations" method="POST" autocomplete="off">
-        <h2>Enter Arrival:</h2>
-        <br>
-        <label>Airport:</label>
-        <select name="airport">
-            <option value="AUS">AUS</option>
-            <option value="DFW">DFW</option>
-            <option value="DEN">DEN</option>
-            <option value="LAX">LAX</option>
-            <option value="SAN">SAN</option>
-        </select><br><br>
-        <label>Arrival Date:</label>
-            <input type="date" name="arrival">
-        </label><br><br>
-        <button type="submit">Submit</button>
+        <h5 class="display-6">Add more <i>Arrivals</i>:</h5>
+        <hr>
+        <div class="d-flex justify-content-between">
+            <div>
+                <label>Arrival Airport:</label>
+                <select name="airport">
+                    <option value="AUS">AUS</option>
+                    <option value="DFW">DFW</option>
+                    <option value="DEN">DEN</option>
+                    <option value="LAX">LAX</option>
+                    <option value="SAN">SAN</option>
+                </select>
+            </div>
+            <div>
+                <label>Arrival Date:</label>
+                    <input type="date" name="arrival">
+                </label>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
     </form>
-    
-    <br><br>
-    
-    <h5>Arrival Options: </h5>
+    <br>
+
+    <h3 class="display-3">Arrival Options: </h3>
     <% if (flight.destinations.length) { %>
     
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Arrival At:</th>
+                    <th>Arrival At</th>
                     <form action="/flights/<%= flight._id %>/destinations/ascending" method="GET">
-                        <th>Arrival Date: <button>v</button> </th>
+                        <th>Arrival Date <button>v</button> </th>
                     </form>
                 </tr>
             </thead>
             <tbody>
+                <% const currentTime = () => new Date() %>
                 <% flight.destinations.forEach(d => { %>
                     <tr>
+                    <% if (currentTime() > d.arrival) { %>
+                        <td class="text-danger"><%= d.airport %></td>
+                        <td class="text-danger"><%= d.arrival %></td>
+                    <% } else { %>
                         <td><%= d.airport %></td>
                         <td><%= d.arrival %></td>
+                    <% } %>
                     </tr>
                 <% }) %>
             </tbody>
         </table>
     
     <% } else { %>
-        <h5>Yet to select Arrival destination</h5>
+        <hr>
+        <h5 class="display-6 fs-5 text-center">- Yet to add Arrival destinations -</h5>
     <% } %>
-     
+    <br>
     <form action="/flights/<%= flight._id %>/tickets/new" method="GET">  
-        <button type="submit">Purchase Tickets</button>
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="submit">Purchase Tickets Here</button>
+        </div>
     </form>
-    
-    <br><br>
-    <h5>Tickets</h5>
-    <table class="table table-hover"> 
-        <thead>
-            <tr>
-                <th>Seat</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% tickets.forEach(function(t) { %>
-              <tr>
-                <td><%= t.seat %></td>
-                <td><%= t.price %></td>
-              </tr>
-            <% }); %>
-        </tbody>
-    </table>     
-                               
+    <br>
+    <h5 class="display-6">Ticket Options:</h5>
+    <% if (tickets.length) { %>
+        <table class="table table-hover"> 
+            <thead>
+                <tr>
+                    <th>Seat</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% tickets.forEach(function(t) { %>
+                <tr>
+                    <td><%= t.seat %></td>
+                    <td>$<%= t.price %></td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>     
+    <% } else { %>
+        <hr>
+        <h5 class="display-6 fs-5 text-center">- Yet to purchase Tickets -</h5>
+    <% } %>                           
 </div>
 
 <%- include('../partials/footer') %>

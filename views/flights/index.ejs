@@ -1,30 +1,41 @@
 <%- include('../partials/header') %>
-<div class="textBg">
+<div class="textBg flightsTable">
 
-    <h2 class="display-2">Current Flights</h2>
+    <h2 class="display-2">Departure Flights</h2>
        
-    <table class="table table-hover">
+    <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th>Airline</th>
                 <th>Airport</th>
                 <th>Flight No.</th>
                 <th>Departure Date</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
+            <% const currentTime = () => new Date() %>
+
             <% flights.forEach(f => {  %>
+
                 <tr>
-                    <td><%= f.airline %></td>
-                    <td><%= f.airport %></td>
-                    <td><%= f.flightNo %></td>
-                    <td><%= f.departs %></td>
-    
+                    <% if (currentTime() > f.departs) { %>
+                        <td class="text-danger"><%= f.airline %></td>
+                        <td class="text-danger"><%= f.airport %></td>
+                        <td class="text-danger"><%= f.flightNo %></td>
+                        <td class="text-danger"><%= f.departs %></td>
+                    <% } else { %>
+                        <td><%= f.airline %></td>
+                        <td><%= f.airport %></td>
+                        <td><%= f.flightNo %></td>
+                        <td><%= f.departs %></td>
+                    <% } %>
                     <td>
                         <form action="/flights/<%= f._id %>" method="GET">
                             <button type="submit" class="btn btn-secondary">details</button>
                         </form>
                     </td>
+                    
                 </tr>
             <% }); %>
         </tbody>

@@ -1,31 +1,45 @@
 <%- include('../partials/header') %>
 
-<div class="textBg">
+<div class="textBg position-relative addFlight">
 
-  <h1>ADD FLIGHTS HERE</h1>
-  
+  <h5 class="display-5">Add more <i>Departing Flights</i></h5>
+  <br>
   <form action="/flights" method="POST" autocomplete="off">
-      <label>Airline</label>
-      <select name="airline">
+      <label>Select an Airline:</label>
+      <select name="airline" class="form-select">
         <option value="American">American</option>
         <option value="Southwest">Southwest</option>
         <option value="United">United</option>
-      </select><br><br>
-      <label>Airport</label>
-      <select name="airport">
+      </select><br>
+
+      <label>Select an Airport:</label>
+      <select name="airport" class="form-select">
         <option value="AUS">AUS</option>
         <option value="DFW">DFW</option>
         <option value="DEN">DEN</option>
         <option value="LAX">LAX</option>
         <option value="SAN">SAN</option>
-      </select><br><br>
-      <label>Flight No.:
+      </select><br>
+
+      <div class="d-flex justify-content-between">
+        <div>
+          <label>Flight Number:</label>
+          <br>
           <input type="text" name="flightNo">
-      </label><br><br>
-      <label>Departure date:
+          <div class="form-text">Enter a value from 0 - 99.</div>
+        </div>
+
+        <div>
+          <label>Departure date:</label>
+          <br>
           <input type="date" name="departs">
-      </label><br><br>
-      <input type="submit" value="Add Flight">
+        </div>
+      </div>
+      <br><br>
+
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit">Add Flight</button>
+      </div>
   </form>
   
 </div>

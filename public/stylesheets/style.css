@@ -1,14 +1,15 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  /* background: linear-gradient(45deg, rgb(6, 79, 216), rgb(9, 31, 90));
-  height: 100vh; */
+  background: linear-gradient(45deg, rgb(64, 86, 126), rgb(7, 21, 61));
+  min-height: 100vh;
+  min-width: 100vw;
+  position: relative;
 }
-
 a {
-  color: #00B7FF;
+  color: #062e3d;
 }
 
+/* Header */
 .container-fluid {
   position: relative;
   /* border: 1px solid blue; */
@@ -17,8 +18,7 @@ a {
   height: 50px;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  /* border: 1px solid red; */
+  transform: translateY(-50%); 
 }
 #logo span {
   margin-left: 50px;
@@ -27,27 +27,65 @@ a {
 .nav-link {
   font-size: 20px;
 }
-.homeSplash {
-  position: relative;
-  z-index:-1;
-}
-.backgroundHome {
+
+/* Home */
+.homeBg {
+  clip-path: polygon(0 10%, 100% 10%, 100% 80%, 0 80%);
   width: 100%;
-  margin-top: -25px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
 }
-.display-1 {
+.homeTitle {
   color: rgb(255, 255, 255);
   background-color: rgba(11, 93, 107, 0.5);
   border-radius: 5px;
   padding: 20px;
   position: absolute;
   z-index: 5;
-  top: 50%;
+  top: 40%;
   right: 0%;
   transform: translateY(-50%);
 }
 
+/* General data background */
 .textBg {
-  background: rgb(204, 204, 204);
-  padding: 20px 50px;
+  background: rgb(202, 221, 231);
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  box-shadow: 5px 10px rgba(0,0,0,0.5);
+  overflow: auto;
+}
+
+/* Add Flights */
+.addFlight {
+  width: 550px;
+  padding: 30px;
+}
+
+/* All Flights */
+.flightsTable {
+  width: 900px;
+  padding: 30px;
+}
+
+/* Details */
+.detailTable {
+  width: 900px;
+  height: 700px;
+  padding: 40px;
+  /* overflow: auto; */
+}
+
+.table th, td {
+  text-align: center;
+}
+
+/* Footer */
+.footerSize {
+  /* height: 100px; */
 }
